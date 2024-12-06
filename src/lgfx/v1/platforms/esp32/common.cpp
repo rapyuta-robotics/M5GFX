@@ -1472,12 +1472,7 @@ namespace lgfx
 
           if (0 == getRxFifoCount(dev))
           {
-            i2c_stop(i2c_port);
             ESP_LOGW("LGFX", "i2c read error : read timeout");
-            res = cpp::fail(error_t::connection_lost);
-            i2c_context[i2c_port].state = cpp::fail(error_t::connection_lost);
-            i2c_context[i2c_port].wait_ack_stage = 0;
-            return res;
           }
           *readdata++ = *fifo_addr;
         } while (--len);
